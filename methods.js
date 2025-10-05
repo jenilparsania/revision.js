@@ -18,3 +18,26 @@ in an object, this refers to the object
 in an event, this refers to the element that received the event
 Methods like call(),apply(), and bind() can refer this to any object
 */
+
+
+// call()
+// The call() method is a predefined J(avaScript method.
+// It can invoke (call) a method with an object as an argument (parameter).
+
+const greet = {
+    fullName : function(){
+        return "Hello "+ this.firstName + " " + this.lastName;
+    }
+}
+
+const person1 = {
+    firstName : "Brian",
+    lastName : "Lara"
+}
+const person2 = {
+    firstName : "Martin",
+    lastName : "Guptill"
+}
+
+console.log(greet.fullName.call(person1))
+console.log(greet.fullName.call(person2))

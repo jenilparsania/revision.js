@@ -34,6 +34,7 @@ const person1 = {
     firstName : "Brian",
     lastName : "Lara"
 }
+
 const person2 = {
     firstName : "Martin",
     lastName : "Guptill"
@@ -41,3 +42,19 @@ const person2 = {
 
 console.log(greet.fullName.call(person1))
 console.log(greet.fullName.call(person2))
+
+// call method with the Arguments
+const address = {
+    location: function(city,country){
+        return `${this.firstName} ${this.lastName} ${city} ${country}`
+    }
+}
+
+const person3 = {
+    firstName : "Jimmy",
+    lastName : "Anderson"
+}
+
+console.log(address.location.call(person3,"Birmingham","UK"));
+
+

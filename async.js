@@ -61,3 +61,49 @@ async function fetchAllData(){
         throw error;
     }
 }
+
+//  async function always returns a promise
+
+// Sequential vs Parallel
+function fetchData(id){
+    return new Promise(resolve =>{
+        setTimeout(()=>resolve("data for ID",id),1000)
+
+    });
+}
+
+// Sequential Operation ~ 3 secs
+async function fetchSequential(){
+    console.time('sequential');
+    const data1 = await fetchData(1);
+    const data2 = await fetchData(2);
+    const data3 = await fetchData(3);
+    console.timeEnd('sequentail');
+    return [data1,data2,data3];
+}
+
+// Parallel Operation - takes ~ 1 secs
+async function fetchParallel(){
+    console.time('parallel');
+    const results = await Promise.all([
+        fetchData(1),
+        fetchData(2),
+        fetchData(3),
+
+    ]);
+    console.timeEnd('parallel');
+    return results;
+}
+
+async function runDemo(){
+    console.log("Running sequentialy");
+    const seqResults = await fetchSequential();
+    console.log(seqResults);
+
+    
+    console.log("\nRunning parallel");
+    const parResults = await fetchParallel();
+    console.log(parResults);
+}
+
+runDemo();

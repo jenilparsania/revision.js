@@ -46,3 +46,18 @@ async function getUserData(userId){
 // Async code lets Node.js handle many request at once, without waiting for slow operations like files or database access
 
 // It makes Node.Js great for servers and real time apps 
+
+// Parallel execution
+async function fetchAllData(){
+    try{
+        const [users,products,orders] = await Promise.all([
+            User.find(),
+            Product.find(),
+            Order.find()
+        ]);
+
+    }catch(error){
+        console.error('error fetching data:',error);
+        throw error;
+    }
+}
